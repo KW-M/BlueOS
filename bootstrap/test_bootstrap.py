@@ -258,7 +258,7 @@ class BootstrapperTests(TestCase):  # type: ignore
 
     @pytest.mark.timeout(50)
     def test_bootstrap_core_timeout(self) -> None:
-        start_time = time.time()
+        start_time = time.monotonic()
         self.fs.create_file(Bootstrapper.DOCKER_CONFIG_FILE_PATH, contents=SAMPLE_JSON)
         self.fs.create_file(Bootstrapper.DEFAULT_FILE_PATH, contents=SAMPLE_JSON)
         fake_client = FakeClient()
