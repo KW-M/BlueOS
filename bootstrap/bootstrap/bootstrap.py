@@ -14,7 +14,6 @@ from loguru import logger
 
 
 class Bootstrapper:
-
     DEFAULT_FILE_PATH = pathlib.Path("/bootstrap/startup.json.default")
     DOCKER_CONFIG_PATH = pathlib.Path("/root/.config")
     DOCKER_CONFIG_FILE_PATH = DOCKER_CONFIG_PATH.joinpath("bootstrap/startup.json")
@@ -219,7 +218,9 @@ class Bootstrapper:
             if Bootstrapper.SETTINGS_NAME_CORE in response.json()["repository"]:
                 return True
         except Exception as e:
-            logger.warning(f"Could not talk to version chooser for {time.monotonic() - self.core_last_response_time}: {e}")
+            logger.warning(
+                f"Could not talk to version chooser for {time.monotonic() - self.core_last_response_time}: {e}"
+            )
         return False
 
     def remove(self, container: str) -> None:
