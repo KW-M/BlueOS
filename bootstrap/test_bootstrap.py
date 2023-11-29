@@ -278,7 +278,7 @@ class BootstrapperTests(TestCase):  # type: ignore
         # mock time so it passes faster
         # this new FakeContainer will not throw when it stops
         fake_client.set_active_dockers([FakeContainer(Bootstrapper.CORE_CONTAINER_NAME)])
-        mock_time = patch("time.time", return_value=start_time + 1000)
+        mock_time = patch("time.monotonic", return_value=start_time + 1000)
         mock_time.start()
         # this should timeout AND restart core
         bootstrapper.run()
