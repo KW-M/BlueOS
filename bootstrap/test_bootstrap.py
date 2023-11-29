@@ -52,11 +52,11 @@ class FakeContainer:
         self.name: str = name
         self.client: Any
         self.raise_if_stopped = raise_if_stopped
-        self.created_time = time.time()
+        self.created_time = time.monotonic()
         print(f"created container {self.name} at {self.created_time}")
 
     def age(self) -> float:
-        return time.time() - self.created_time
+        return time.monotonic() - self.created_time
 
     def set_client(self, client: Any) -> None:
         self.client = client
